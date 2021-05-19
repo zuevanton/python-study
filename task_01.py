@@ -1,1 +1,2 @@
-print(len(input()))
+for i in range(25):
+    print('Hello, GloAcademy!')
