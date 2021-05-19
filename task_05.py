@@ -1,2 +1,5 @@
-from math import ceil
-print(ceil(int(input()) / int(input())))
+mail = input()
+if '@' in mail and '.' in mail:
+    print('Корректный')
+else:
+    print('Некорректный')

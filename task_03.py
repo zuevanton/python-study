@@ -1,10 +1,10 @@
-ticket = input()
-num = int(ticket)
-left_num = num // 1000
-right_num = num % 1000
-sum_left_num = left_num // 100 % 10 + left_num // 10 % 10 + left_num % 10
-sum_right_num = right_num // 100 % 10 + right_num // 10 % 10 + right_num % 10
-if sum_right_num == sum_left_num:
-    print('Билет', ticket, 'счастливый')
+text_1 = input()
+text_2 = input()
+text_3 = input()
+max_symbols = max(len(text_1), len(text_2), len(text_3))
+if len(text_1) == max_symbols:
+    print(text_1)
+elif len(text_2) == max_symbols:
+    print(text_2)
 else:
-    print('Билет', ticket, 'НЕсчастливый')
+    print(text_3)

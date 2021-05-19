@@ -1,7 +1,4 @@
-num = float(input())
-if num > 0:
-    print('Положительное')
-elif num < 0:
-    print('Отрицательное')
+if 'Glo Academy' in input():
+    print('YES')
 else:
-    print('Ноль')
+    print('NO')
