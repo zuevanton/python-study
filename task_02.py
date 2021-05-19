@@ -1,7 +1,7 @@
-a = int(input())
-b = int(input())
-print(a, 'умноженное на', b, 'равно', a * b)
-print(a, 'деленное на', b, 'равно', a / b)
-print(a, 'нацело деленное на', b, 'равно', a // b)
-print('Остаток от деления', a, 'на', b, 'равно', a % b)
-print(a, 'в степени', b, 'равно', a ** b)
+num = float(input())
+if num > 0:
+    print('Положительное')
+elif num < 0:
+    print('Отрицательное')
+else:
+    print('Ноль')

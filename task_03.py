@@ -1,6 +1,10 @@
-num = abs(int(input()))
-first_num = num % 1000 // 100
-second_num = num % 100 // 10
-third_num = num % 10
-print('Сумма цифр числа', num, 'равна', first_num + second_num + third_num)
-print('Произведение цифр числа', num, 'равно', first_num * second_num * third_num)
+ticket = input()
+num = int(ticket)
+left_num = num // 1000
+right_num = num % 1000
+sum_left_num = left_num // 100 % 10 + left_num // 10 % 10 + left_num % 10
+sum_right_num = right_num // 100 % 10 + right_num // 10 % 10 + right_num % 10
+if sum_right_num == sum_left_num:
+    print('Билет', ticket, 'счастливый')
+else:
+    print('Билет', ticket, 'НЕсчастливый')
