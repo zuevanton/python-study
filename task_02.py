@@ -1,3 +1,7 @@
+counter = 0
 num = int(input())
-for i in range(num+1):
-    print('Квадрат числа', i, 'равен', i * i)
+while num % 10 != 0:
+    if num % 10 == 5:
+        counter += 1
+    num = num // 10
+print(counter)
