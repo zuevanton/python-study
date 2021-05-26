@@ -1,13 +1,6 @@
 num = int(input())
-min_digit = num % 10
-max_digit = num % 10
 
-while num != 0:
-    if num % 10 < min_digit:
-        min_digit = num % 10
-    if num % 10 > max_digit:
-        max_digit = num % 10
-    num = num // 10
-
-print('Максимальная цифра равна', max_digit)
-print('Минимальная цифра равна', min_digit)
+for i in range(1, num + 1):
+    if 2 <= i <= 8 or 128 <= i <= 256 or 1024 <= i <= 2048:
+        continue
+    print(i)
