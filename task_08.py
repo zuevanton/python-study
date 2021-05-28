@@ -1,4 +1,7 @@
 counter = 0
-for i in range(1, int(input()) + 1):
-    counter += str(i).count('5')
+str = input()
+
+for i in range(len(str) - 1):
+    if str[i] == str[i + 1]:
+        counter += 1
 print(counter)

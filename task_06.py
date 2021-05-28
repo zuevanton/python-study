@@ -1,4 +1,5 @@
-for i in range(1, 12):
-    for j in range(1, i):
-        print(j, end=' ')
-    print()
+text = input()
+
+for c in text:
+    if '0' <= c <= '9':
+        print(c)

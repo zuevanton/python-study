@@ -1,4 +1,4 @@
-for i in range(24):
-    for j in range(60):
-        for k in range(60):
-            print(f'{i} : {j} : {k}')
+second_name = input()
+first_name = input()
+middle_name = input()
+print(f'{second_name} {first_name[0]} {middle_name[0]}')
