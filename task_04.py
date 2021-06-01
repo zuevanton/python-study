@@ -1,7 +1,8 @@
-char_num = ord(input())
-if ord('a') <= char_num <= ord('z'):
-    print(chr(char_num).upper())
-elif ord('A')<= char_num <= ord('Z'):
-    print(chr(char_num).lower())
-else:
-    print(chr(char_num))
+numbers = input().split()
+counter = 0
+for i in numbers:
+    for j in numbers:
+        if i == j:
+            counter += 1
+    counter -= 1
+print(counter / 2)

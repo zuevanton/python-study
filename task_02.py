@@ -1,1 +1,1 @@
-print('yes' if input().isdigit() else 'no')
+print(*input().split('\\'), sep='\n')
