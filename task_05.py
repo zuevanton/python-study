@@ -1,5 +1,8 @@
-numbers = input().split()
+def is_date_starry(date):
+    day = int(date.split('.')[0])
+    month = int(date.split('.')[1])
+    year = int(date.split('.')[2]) % 100
+    return True if day * month == year else False
 
-for num in numbers:
-    if numbers.count(num) == 1:
-        print(num, end=' ')
+
+print(is_date_starry(input()))

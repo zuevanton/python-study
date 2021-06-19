@@ -1,8 +1,5 @@
-numbers = input().split()
-counter = 0
-for i in numbers:
-    for j in numbers:
-        if i == j:
-            counter += 1
-    counter -= 1
-print(counter / 2)
+def get_delivery_cost(products_num):
+    return products_num * 50 + 50
+
+
+print(get_delivery_cost(int(input())))

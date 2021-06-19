@@ -1,10 +1,9 @@
-num = int(input())
-words_list = []
-for i in range(num):
-    words_list.append(input())
-print('введите поисковый запрос:', end=' ')
-query = input()
+def count_rank(num):
+    rank = 0
+    while num > 0:
+        rank += 1
+        num = num // 10
+    return rank
 
-for word in words_list:
-    if query.lower() in word.lower():
-        print(word)
+
+print(count_rank(int(input())) * count_rank(int(input())))
