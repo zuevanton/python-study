@@ -1,79 +1,64 @@
-def create_field():
-    field = []
-    for i in range(3):
-        field.append(['*'] * 3)
-    return field
+import random
 
 
-def print_field(field):
-    for i in range(3):
-        for j in range(3):
-            print(field[i][j], end='')
-        print()
+def generate_secret_word():
+    digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+    word = ''
+    for i in range(4):
+        random_index = random.randint(0, len(digits) - 1)
+        word += str(digits[random_index])
+        digits.pop(random_index)
+    return word
 
 
-def win(field):
-    for i in range(3):
-        if field[i][0] == field[i][1] == field[i][2] and field[i][0] != '*':
-            return True
-        if field[0][i] == field[1][i] == field[2][i] and field[0][i] != '*':
-            return True
-        if field[0][0] == field[1][1] == field[2][2] and field[0][0] != '*':
-            return True
-        if field[0][2] == field[1][1] == field[2][2] and field[2][0] != '*':
-            return True
-    return False
+def get_cow_count(user_input, secret):
+    counter = 0
+    for i in range(len(secret)):
+        if user_input[i] != secret[i] and user_input[i] in secret:
+            counter += 1
+    return counter
 
 
-def end_game(field):
-    if win(field):
-        return True
-    for i in range(3):
-        for j in range(3):
-            if field[i][j] == '*':
-                return False
-
-    return True
+def get_bulls_count(user_input, secret):
+    counter = 0
+    for i in range(len(secret)):
+        if secret[i] == user_input[i]:
+            counter += 1
+    return counter
 
 
 def validate_input(player_input):
     if player_input.isdigit():
-        player_input = int(player_input)
-        if 1 <= player_input <= 3:
-            return player_input
+        if len(player_input) == 4:
+            test_set = set()
+            for elem in player_input:
+                test_set.add(int(elem))
+            if len(test_set) != 4:
+                print('необходимо ввести разные цифры')
+                return validate_input(input())
         else:
-            print('введите число от 1 до 3')
+            print('необходимо ввести 4 цифры')
             return validate_input(input())
     else:
-        print('введите число от 1 до 3')
+        print('необходимо ввести цифры')
         return validate_input(input())
+    return player_input
 
 
 def init_game():
-    field = create_field()
-    current_symbol = 'X'
+    secret_word = generate_secret_word()
+    print(secret_word)
+    while True:
+        print('найди число, загаданное компьютером')
+        user_word = validate_input(input())
+        bulls_count = get_bulls_count(user_word, secret_word)
+        cows_count = get_cow_count(user_word, secret_word)
+        print(f'{bulls_count} быков, {cows_count} коров')
+        if bulls_count == 4:
+            print('ура, победа! ')
+            break
 
-    while not end_game(field):
-        print_field(field)
-        print('введите номер строки и столбца')
-        row = validate_input(input())
-        column = validate_input(input())
-        if field[row - 1][column - 1] == '*':
-            field[row - 1][column - 1] = current_symbol
-        else:
-            print('тут уже занято, повторите попытку')
-            continue
-        if current_symbol == 'X':
-            current_symbol = 'O'
-        else:
-            current_symbol = 'X'
-
-    if current_symbol == 'X':
-        print('ура победил O')
-    else:
-        print('ура победил X')
-
-    print('хотите сыграть еще? y/n')
+    print('хотите еще сыграть еще? y/n')
     if input().lower() == 'y':
         init_game()
 
