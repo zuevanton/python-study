@@ -15,12 +15,17 @@ class QuestionsStorage:
         return self.questions
 
     def add_question(self, text, right_answer):
+        if len(text) <= 5 or not right_answer.isdigit():
+            return False
         self.questions.append(Question(text, right_answer))
+        return True
 
     def remove_question(self, text):
-        for i in range(len(self.questions)-1):
+        for i in range(len(self.questions) - 1):
             if text == self.questions[i].text:
                 self.questions.pop(i)
+                return True
+        return False
 
 
 class Filesystem:
@@ -98,13 +103,30 @@ def validate_user_answer(user_input):
 
 
 questions_storage = QuestionsStorage([
-            Question('сколько будет два плюс два умноженное на два?', 6),
-            Question('бревно нужно распилить на 10 частей. сколько нужно сделать распилов', 9),
-            Question('на двех руках 10 пальцев, соклько пальцев на 5 руках?', 25),
-            Question('укол делают каждые полчаса, сколько нужно минут для трех уколов?', 60),
-            Question('пять свечей горело, две потухли. сколько осталось свечей?', 2)
-        ])
+    Question('сколько будет два плюс два умноженное на два?', 6),
+    Question('бревно нужно распилить на 10 частей. сколько нужно сделать распилов', 9),
+    Question('на двех руках 10 пальцев, соклько пальцев на 5 руках?', 25),
+    Question('укол делают каждые полчаса, сколько нужно минут для трех уколов?', 60),
+    Question('пять свечей горело, две потухли. сколько осталось свечей?', 2)
+])
 users_results_storage = UsersResultsStorage()
+
+
+def change_questions():
+    print('хотите добавить новый вопрос? y/n')
+    if input().lower() == 'y':
+        print('введите новый вопрос(сначала текст, затем ответ числом)')
+        if questions_storage.add_question(input(), input()):
+            print('вопрос добавлен')
+        else:
+            print('ошибка ввода, вопрос не добавлен')
+    print('хотите удалить вопрос? y/n')
+    if input().lower() == 'y':
+        print('введите текст вопроса, который хотите удалить')
+        if questions_storage.remove_question(input()):
+            print('вопрос удален')
+        else:
+            print('произошла ошибка ввода')
 
 
 def init_test():
@@ -128,13 +150,6 @@ def init_test():
         init_test()
 
 
+change_questions()
 init_test()
 users_results_storage.show_scoreboard()
-
-# тесты для задания
-print('введите новый вопрос')
-questions_storage.add_question(input(), int(input()))
-print('введите текст вопроса, который вы хотите удалить')
-questions_storage.remove_question(input())
-for q in questions_storage.get_questions():
-    print(q.text)
